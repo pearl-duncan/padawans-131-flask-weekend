@@ -1,0 +1,31 @@
+{% extends "base.j2" %}
+
+
+{% block content %}
+
+<h1>books page</h1>
+
+
+{% if current_user.is_authenticated %}
+
+<form action="/books" method="POST">
+
+    {{ form.hidden_tag() }}
+
+    {{ form.name() }}
+    {{ form.author() }}
+
+    {{ form.submit() }}
+</form>
+{% endif %}
+
+{% if books %}
+{% for book in books %}
+<div class="d-flex gap-4">
+    <h2>Book: {{ book.name }}</h2>
+    <h2>Author: {{ book.author }}</h2>
+</div>
+{% endfor %}
+{% endif %}
+
+{% endblock content %}
